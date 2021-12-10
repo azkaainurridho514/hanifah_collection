@@ -1,0 +1,44 @@
+    /*  font-family: 'Calligraffitti', cursive;
+		font-family: 'Dancing Script', cursive;
+		font-family: 'Roboto', sans-serif; */
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+.judul{
+	font-family: 'Dancing Script', cursive;
+}
+
+.back{
+	background: #2F2F2F;
+}
+
+.nav-link, .navbar-brand{
+	color: white;
+}
+
+.nh:hover{
+	color: #ddd;
+}
+
+.hg{
+	height: 100px !important;
+	overflow: hidden;
+}
+
+.mxwd{
+	max-width: 500px;
+}
+
+@media(max-width: 900px){
+	.mxwd{
+	max-width: 400px;
+    }
+}
+
+@media(max-width: 700px){
+	.mxwd{
+	max-width: 200px;
+    }
+}
