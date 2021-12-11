@@ -297,6 +297,19 @@
           </div>
           <form action="<?= base_url() ?>admin/insert" method="post">
           <div class="modal-body">
+
+          <?php 
+             $query = " SELECT * FROM `content` WHERE id_content IN (SELECT MAX(id_content) FROM `content`) ";
+             $data = $this->db->query($query)->row_array();
+            ?>
+           <?php
+            $first = 1;
+            if(!$data) { ?>
+            <input type="hidden" name="id" value="<?= $first ?>">
+            <?php } else{ ?>
+              <input type="hidden" name="id" value="<?= $data['id_content'] + 1 ?>">
+            <?php } ?>
+
             <div class="mb-3">
               <label class="form-label">Title</label>
               <input type="text" class="form-control" name="title" placeholder="Masukan title barang">
@@ -314,7 +327,7 @@
                $cat = $this->db->get('category')->result_array();
               ?>
               <label class="form-label">Category</label>
-               <select class="form-select" aria-label="Default select example">
+               <select class="form-select" name="category" aria-label="Default select example">
                   <option selected value="0">Harus pilih salah satu!</option>
                   <?php foreach($cat as $ct): ?>
                   <option value="<?= $ct['id_category'] ?>"><?= $ct['category'] ?></option>
