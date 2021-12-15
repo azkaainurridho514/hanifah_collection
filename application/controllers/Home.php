@@ -6,6 +6,11 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Home_model');
 	}
+	
+    function ambil(){
+        $data = $this->Home_model->ambil();
+        echo json_encode($data);
+    }
 	public function index()
 	{
 		$data['listContent'] = $this->Home_model->getContent();

@@ -7,8 +7,6 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
@@ -21,6 +19,9 @@
   <!-- data table -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
+  <!-- sweetalert -->
+  <!-- <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/sweetalert2.min.css"> -->
+
   <!-- css -->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
 </head>
@@ -31,7 +32,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="font-size:20px"><i class="bi bi-list"></i></a>
       </li>
     </ul>
 
@@ -39,7 +40,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
+          <i class="bi bi-arrows-fullscreen"></i>
         </a>
       </li>
     </ul>
@@ -139,38 +140,44 @@
 </div>
 <!-- ./wrapper -->
 
+
+
+<script type="text/javascript" src="<?= base_url() ?>assets/js/script.js"></script>
+
 <!-- REQUIRED SCRIPTS -->
 
+<!-- sweetalert -->
+<script src="<?= base_url() ?>assets/js/sweetalert2.all.min.js"></script>
 
-<!-- jQuery -->
 <script src="<?= base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
 <script src="<?= base_url() ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
 <script src="<?= base_url() ?>assets/js/adminlte.js"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="<?= base_url() ?>assets/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="<?= base_url() ?>assets/plugins/raphael/raphael.min.js"></script>
-<script src="<?= base_url() ?>assets/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="<?= base_url() ?>assets/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- data table -->
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<!-- ChartJS -->
-<script src="<?= base_url() ?>assets/plugins/chart.js/Chart.min.js"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url() ?>assets/js/pages/dashboard2.js"></script>
-<!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+<script>
+
+    $('#insert').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        type: "post",
+        url: "<?= base_url() ?>admin/insert_content",
+        data: $('#insert').serialize(),
+        dataType: "json",
+        success: function(response){
+          if(response.err){
+             $('.pesan').html(response.err).show();
+          }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert(xhr.status + '\n' + xhr.responseText + thrownError);
+            alert('ERROR');
+        }
+      });
+    });
+</script>
 
 <!-- js -->
-<script type="text/javascript" src="<?= base_url() ?>assets/js/script.js"></script>
+
 </body>
 </html>
